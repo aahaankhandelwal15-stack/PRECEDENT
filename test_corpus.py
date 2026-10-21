@@ -116,7 +116,7 @@ future_policy_chunks = {
 }
 
 # ============================================================
-# Document: conflicting_policies (two docs, NO supersedes relationship)
+# Document: conflicting_policies (two versions of same policy, NO supersedes relationship)
 # ============================================================
 CONFLICTING_POLICY_A_DOC_ID = "policy_conflict_a"
 CONFLICTING_POLICY_B_DOC_ID = "policy_conflict_b"
@@ -127,7 +127,7 @@ conflicting_policy_chunks_a = {
     CONFLICTING_CHUNK_A: {
         "chunk_id": CONFLICTING_CHUNK_A,
         "text": "Maximum reimbursement per fiscal year is ₹50,000 for all employee categories.",
-        "policy_id": "policy_conflict_a",
+        "policy_id": "policy_conflict",
         "version": "1.0",
         "status": "active",
         "authority_level": "global",
@@ -145,8 +145,8 @@ conflicting_policy_chunks_b = {
     CONFLICTING_CHUNK_B: {
         "chunk_id": CONFLICTING_CHUNK_B,
         "text": "Maximum reimbursement per fiscal year is ₹75,000 for managerial employees.",
-        "policy_id": "policy_conflict_b",
-        "version": "1.0",
+        "policy_id": "policy_conflict",
+        "version": "1.1",
         "status": "active",
         "authority_level": "global",
         "jurisdiction": "headquarters",

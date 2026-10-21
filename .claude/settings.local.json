@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pip install *)",
+      "Bash(unzip *)",
+      "Bash(python *)",
+      "Bash(dir D:\\\\Projects\\\\PRECEDENT\\\\test_precedent.db)",
+      "Bash(del D:\\\\Projects\\\\PRECEDENT\\\\test_precedent.db)",
+      "PowerShell(python -c \"from app.api.v1.endpoints.retrieval_phase2 import router; print\\('Import successful:', dir\\(router\\)\\)\")",
+      "PowerShell(head *)",
+      "PowerShell(python test_ingest.py 2>&1)",
+      "PowerShell(rg _build_refusal_response *)",
+      "PowerShell(python -m py_compile \"D:\\\\Projects\\\\PRECEDENT\\\\app\\\\core\\\\retrieval.py\" 2>&1)",
+      "PowerShell(python3 D:\\\\Projects\\\\PRECEDENT\\\\run_test.py)",
+      "Bash(!python *)",
+      "Bash(python3 *)",
+      "PowerShell(tail *)",
+      "PowerShell(python3 -m pytest tests/test_phase10.py::test_fm1_partial_coverage_2_of_3 -v 2>&1 | python3 -c \"import sys; data=''.join\\(sys.stdin.readlines\\(\\)[-60:]\\); print\\(data\\)\")",
+      "PowerShell(python3 -c \"content=open\\('D:/Projects/PRECEDENT/app/core/retrieval.py'\\).read\\(\\); lines=content.split\\('\\\\n'\\); [print\\(f'{i+1}: {l}'\\) for i,l in enumerate\\(lines\\) if 730 <= i <= 750]\")",
+      "PowerShell(python3 -c \"content=open\\('D:/Projects/PRECEDENT/app/core/retrieval.py'\\).read\\(\\); idx=content.find\\('def retrieve_chunks'\\); print\\(content[idx:idx+2000]\\)\")",
+      "PowerShell(python3 -m pytest tests/test_phase10.py::test_fm7b_no_evidence -v 2>&1 | python3 -c \"import sys; data=''.join\\(sys.stdin.readlines\\(\\)[-50:]\\); print\\(data\\)\")",
+      "PowerShell(grep *)",
+      "Bash(exist *)",
+      "Read(//d//**)",
+      "Bash(2>&1)"
+    ]
+  }
+}

@@ -1,0 +1,122 @@
+# ==========================================
+# PRECEDENT - Git Ignore
+# ==========================================
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+wheels/
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+
+# --- Virtual Environments ---
+.venv/
+venv/
+env/
+ENV/
+
+# --- Environment Variables & Secrets ---
+.env
+.env.*
+!.env.example
+!.env.template
+*.pem
+*.key
+secrets/
+credentials/
+service-account*.json
+
+# --- API Keys / Credentials ---
+.streamlit/secrets.toml
+secrets.toml
+
+# --- Databases ---
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+*.sqlite-shm
+*.sqlite-wal
+
+# --- Logs ---
+*.log
+logs/
+log/
+
+# --- Testing ---
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+test-results/
+junit.xml
+
+# --- Test / Runtime Artifacts ---
+artifacts/
+tmp/
+temp/
+*.tmp
+*.bak
+*.swp
+*.swo
+
+# --- AI / RAG Artifacts ---
+# Generated vector databases and local embedding stores
+chroma/
+chroma_db/
+vector_store/
+vectorstore/
+embeddings_cache/
+.cache/
+.cache_huggingface/
+
+# --- Model Files ---
+*.safetensors
+*.gguf
+*.onnx
+*.pt
+*.pth
+*.ckpt
+
+# --- Jupyter Notebooks ---
+.ipynb_checkpoints/
+
+# --- Type Checking / Linting ---
+.mypy_cache/
+.pyright/
+.ruff_cache/
+
+# --- IDEs / Editors ---
+.vscode/
+.idea/
+*.code-workspace
+
+# --- Operating System ---
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# --- Node.js (if frontend is added later) ---
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# --- Deployment / Infrastructure Secrets ---
+.terraform/
+*.tfstate
+*.tfstate.*
+override.tf
+override.tf.json
+
+# --- Local configuration ---
+.local/
+.local_settings
