@@ -1,0 +1,15 @@
+# Precedent V1 - Development Dependencies
+# Install with: pip install -r requirements.txt -r requirements-dev.txt
+
+# Testing
+pytest>=7.4.0
+pytest-asyncio>=0.23.0
+pytest-cov>=4.1.0
+
+# Code Quality & Linting
+ruff>=0.1.0
+mypy>=1.8.0
+
+# Type Stubs (for better type checking)
+types-requests>=2.31.0
+types-python-dateutil>=2.8.19

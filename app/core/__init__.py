@@ -56,6 +56,37 @@ from app.core.retrieval import (
     assess_evidence_sufficiency,
     assess_retrieval_relevance,
 )
+from app.core.llm_provider import (
+    LLMProvider,
+    LLMProviderType,
+    LLMMessage,
+    LLMResponse,
+    LLMProviderConfig,
+    MockLLMProvider,
+    NVIDIALLMProvider,
+    OpenAILLMProvider,
+    AnthropicLLMProvider,
+    create_llm_provider,
+    get_default_provider,
+    generate_response,
+)
+from app.core.generation_prompts import (
+    SYSTEM_PROMPT,
+    EXCLUSIVITY_CLAUSE,
+    DECOMPOSITION_PROMPT,
+    CLAIM_EXTRACTION_PROMPT,
+    GenerationContext,
+    build_generation_prompt,
+    build_decomposition_prompt,
+    build_claim_extraction_prompt,
+    validate_generation_response,
+    parse_generation_response,
+)
+from app.core.generation import (
+    GenerationResult,
+    run_generation_phase,
+    run_full_pipeline,
+)
 
 __all__ = [
     # Budget
@@ -115,4 +146,32 @@ __all__ = [
     "filter_chunks_by_authority",
     "assess_evidence_sufficiency",
     "assess_retrieval_relevance",
+    # LLM Provider
+    "LLMProvider",
+    "LLMProviderType",
+    "LLMMessage",
+    "LLMResponse",
+    "LLMProviderConfig",
+    "MockLLMProvider",
+    "NVIDIALLMProvider",
+    "OpenAILLMProvider",
+    "AnthropicLLMProvider",
+    "create_llm_provider",
+    "get_default_provider",
+    "generate_response",
+    # Generation Prompts
+    "SYSTEM_PROMPT",
+    "EXCLUSIVITY_CLAUSE",
+    "DECOMPOSITION_PROMPT",
+    "CLAIM_EXTRACTION_PROMPT",
+    "GenerationContext",
+    "build_generation_prompt",
+    "build_decomposition_prompt",
+    "build_claim_extraction_prompt",
+    "validate_generation_response",
+    "parse_generation_response",
+    # Generation
+    "GenerationResult",
+    "run_generation_phase",
+    "run_full_pipeline",
 ]

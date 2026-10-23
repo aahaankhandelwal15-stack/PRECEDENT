@@ -27,10 +27,28 @@ class Settings(BaseSettings):
     database_echo: bool = False
 
     # LLM Provider (swappable per SRS)
-    llm_provider: str = "mock"  # mock, groq, openai, anthropic
+    llm_provider: str = "mock"  # mock, nvidia, openai, anthropic, groq
     llm_model: str = "mock-model"
     llm_api_key: Optional[str] = None
     llm_base_url: Optional[str] = None
+    llm_temperature: float = 0.1
+    llm_max_tokens: int = 4096
+    llm_timeout: float = 30.0
+
+    # NVIDIA NIM specific settings
+    nvidia_api_key: Optional[str] = None
+    nvidia_base_url: str = "https://integrate.api.nvidia.com/v1"
+    nvidia_model: str = "meta/llama-3.1-405b-instruct"
+
+    # OpenAI specific settings
+    openai_api_key: Optional[str] = None
+    openai_base_url: str = "https://api.openai.com/v1"
+    openai_model: str = "gpt-4o-mini"
+
+    # Anthropic specific settings
+    anthropic_api_key: Optional[str] = None
+    anthropic_base_url: str = "https://api.anthropic.com/v1"
+    anthropic_model: str = "claude-3-haiku-20240307"
 
     # Embedding Provider
     embedding_provider: str = "mock"  # mock, sentence-transformers, openai

@@ -1,0 +1,40 @@
+# Precedent V1 - Production Dependencies
+# Core Framework
+fastapi>=0.109.0
+# uvicorn without [standard] to avoid pyyaml C extension (requires MSVC on Windows)
+# [standard] includes: httptools, watchfiles, websockets, pyyaml
+uvicorn>=0.27.0
+httptools>=0.8.0
+watchfiles>=0.20
+websockets>=13.0
+
+# Database & ORM
+sqlmodel>=0.0.14
+
+# Data Validation & Settings
+pydantic>=2.6.0
+pydantic-settings>=2.1.0
+
+# Environment Configuration
+python-dotenv>=1.0.0
+
+# HTTP Client (for LLM providers)
+httpx>=0.26.0
+
+# Numerical Computing
+numpy>=1.26.0
+
+# Retry Logic
+tenacity>=8.2.0
+
+# ============================================================
+# Development Dependencies (install with: pip install -r requirements.txt -r requirements-dev.txt)
+# ============================================================
+# Testing
+pytest>=7.4.0
+pytest-asyncio>=0.23.0
+pytest-cov>=4.1.0
+
+# Code Quality
+ruff>=0.1.0
+mypy>=1.8.0

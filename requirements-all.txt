@@ -1,0 +1,57 @@
+# Precedent V1 - All Dependencies (Production + Development)
+# Install with: pip install -r requirements-all.txt
+
+# ============================================================
+# Core Framework
+# ============================================================
+fastapi>=0.109.0
+# uvicorn without [standard] to avoid pyyaml C extension (requires MSVC on Windows)
+# [standard] includes: httptools, watchfiles, websockets, pyyaml
+uvicorn>=0.27.0
+httptools>=0.8.0
+watchfiles>=0.20
+websockets>=13.0
+
+# ============================================================
+# Database & ORM
+# ============================================================
+sqlmodel>=0.0.14
+
+# ============================================================
+# Data Validation & Settings
+# ============================================================
+pydantic>=2.6.0
+pydantic-settings>=2.1.0
+
+# ============================================================
+# Environment Configuration
+# ============================================================
+python-dotenv>=1.0.0
+
+# ============================================================
+# HTTP Client (for LLM providers: NVIDIA, OpenAI, Anthropic)
+# ============================================================
+httpx>=0.26.0
+
+# ============================================================
+# Numerical Computing
+# ============================================================
+numpy>=1.26.0
+
+# ============================================================
+# Retry Logic
+# ============================================================
+tenacity>=8.2.0
+
+# ============================================================
+# Development & Testing
+# ============================================================
+pytest>=7.4.0
+pytest-asyncio>=0.23.0
+pytest-cov>=4.1.0
+ruff>=0.1.0
+mypy>=1.8.0
+
+# Type Stubs (for better type checking)
+types-requests>=2.31.0
+types-python-dateutil>=2.8.19

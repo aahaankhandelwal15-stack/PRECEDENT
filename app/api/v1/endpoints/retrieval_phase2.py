@@ -1,4 +1,4 @@
-"""POST /retrieval/retrieve endpoint for Precedent V1 (FR-2.x, FR-3.x, FR-4.x, FR-7.x, Section 6.2)."""
+"""POST /retrieval/retrieve and /retrieval/query endpoints for Precedent V1 (FR-2.x, FR-3.x, FR-4.x, FR-7.x, Section 6.2)."""
 
 from __future__ import annotations
 
@@ -19,6 +19,7 @@ from app.schemas import (
 )
 from app.core.database import get_session
 from app.core.retrieval import run_retrieval_pipeline
+from app.core.generation import run_full_pipeline
 from app.core.budget import ExecutionBudget
 from app.core.config import settings
 from app.api.v1.endpoints.trace import store_trace
@@ -222,8 +223,7 @@ async def query(
     """
     Full query endpoint: retrieve + generate answer.
 
-    For V1, this runs the retrieval pipeline and returns the trace.
-    Generation phase would be added here in full implementation.
+    Runs the complete pipeline: retrieval → generation with exclusivity clause.
     """
     # Verify authorization
     if not authorization.startswith("Bearer "):
@@ -251,8 +251,8 @@ async def query(
     )
 
     try:
-        # Run retrieval pipeline
-        filtered_response, trace = await run_retrieval_pipeline(
+        # Run full pipeline (retrieval + generation)
+        query_response, trace = await run_full_pipeline(
             session=session,
             query=request.query,
             k=request.k,
@@ -260,30 +260,14 @@ async def query(
             budget=budget,
         )
 
-        # Determine response based on trace outcome
-        if trace.outcome == Outcome.ANSWERED:
-            # In full implementation, generate answer here
-            # For V1, return a placeholder answer based on retrieved chunks
-            answer = _generate_placeholder_answer(filtered_response.chunks, request.query)
-            return QueryResponse(
-                answer=answer,
-                refusal=None,
-                trace_record=trace if request.trace else None,
-                confidence=trace.final_confidence,
-            )
-        else:
-            # Refusal
-            refusal = RefusalResponse(
-                refusal_category=trace.refusal_category or RefusalCategory.LOW_CONFIDENCE,
-                reason=trace.confidence_inputs.get("authority_flags", {}).get("refusal_reason", "Unable to answer"),
-                trace_id=trace.trace_id,
-            )
-            return QueryResponse(
-                answer=None,
-                refusal=refusal,
-                trace_record=trace if request.trace else None,
-                confidence=trace.final_confidence,
-            )
+        # Store trace for later retrieval
+        store_trace(trace)
+
+        # Return response with trace if requested
+        trace_record = trace if request.trace else None
+
+        # The query_response is already a dict from run_full_pipeline
+        return QueryResponse(**query_response, trace_record=trace_record)
 
     except Exception as e:
         from app.core.errors import BudgetViolation, ProviderError
@@ -316,11 +300,3 @@ async def query(
         raise
 
 
-def _generate_placeholder_answer(chunks: list[str], query: str) -> str:
-    """Generate a placeholder answer from retrieved chunks."""
-    if not chunks:
-        return "No relevant policy information found."
-
-    # Simple concatenation for V1
-    combined = " ".join(chunks[:3])  # Use top 3 chunks
-    return f"Based on the retrieved policy documents: {combined[:500]}..."
